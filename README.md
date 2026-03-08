@@ -10,7 +10,7 @@ Blog culinaire full front-end créé par **Darina HOUNHOUI**. Chaque recette rac
 
 ![CulinArt Preview](images/logo.png)
 
-🔗 **Site en ligne :** [rinaalms.github.io/My_Cooking_Recipes](https://rinaalms.github.io/My_Cooking_Recipes)
+🔗 **Site en ligne :** [rinaalms.github.io/My_cooking_recipes.github.io](https://rinaalms.github.io/My_cooking_recipes.github.io/index.html)
 
 ---
 
