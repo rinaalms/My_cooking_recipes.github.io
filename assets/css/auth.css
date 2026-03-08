@@ -71,8 +71,8 @@ body.auth-split-page:hover .auth-visual-img { transform: scale(1.04); }
 .auth-form-side {
   background: var(--dark);
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 48px 64px;
+  align-items: center; justify-content: flex-start;
+  padding: 80px 64px 56px;
   position: relative;
   overflow-y: auto;
   min-height: 100vh;
@@ -95,7 +95,7 @@ body.auth-split-page:hover .auth-visual-img { transform: scale(1.04); }
 .auth-back-link:hover { color: var(--accent-light); }
 
 .auth-form-inner {
-  width: 100%; max-width: 400px;
+  width: 100%; max-width: 440px;
   position: relative; z-index: 1;
 }
 
@@ -241,6 +241,13 @@ body.auth-split-page:hover .auth-visual-img { transform: scale(1.04); }
 }
 .auth-switch a { color: var(--gold); font-weight: 500; transition: color 0.2s; }
 .auth-switch a:hover { color: var(--accent-soft); }
+
+body.signup-page .auth-field        { margin-bottom: 12px; }
+body.signup-page .auth-form-header  { margin-bottom: 22px; }
+body.signup-page .auth-social-row   { margin-bottom: 18px; }
+body.signup-page .auth-divider      { margin-bottom: 18px; }
+body.signup-page .auth-remember     { margin-bottom: 16px; }
+body.signup-page .auth-field input  { padding: 11px 14px; font-size: 14px; }
 
 /* ── RESPONSIVE AUTH ── */
 @media (max-width: 900px) {
