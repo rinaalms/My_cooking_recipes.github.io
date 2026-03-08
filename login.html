@@ -102,15 +102,19 @@
       input.type = input.type === 'password' ? 'text' : 'password';
       btn.style.color = input.type === 'text' ? 'var(--accent-light)' : '';
     }
-    function handleLogin() {
-      const email = document.getElementById('login-email').value.trim();
-      const pwd = document.getElementById('login-pwd').value;
-      if (!email || !pwd) { alert('Veuillez remplir tous les champs.'); return; }
-      const btn = document.querySelector('.auth-submit-btn');
-      btn.textContent = '✓ Bienvenue !';
-      btn.style.background = 'rgba(194,24,91,0.18)';
-      btn.disabled = true;
-    }
+     function handleLogin() {
+        const email = document.getElementById('login-email').value.trim();
+        const pwd = document.getElementById('login-pwd').value;
+        if (!email || !pwd) { alert('Veuillez remplir tous les champs.'); return; }
+      
+        const btn = document.querySelector('.auth-submit-btn');
+        btn.disabled = true;
+        btn.innerHTML = '✓ Connexion réussie…';
+        btn.style.background = 'var(--grad-accent)';
+        btn.style.opacity = '0.85';
+      
+        setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+     }
   </script>
   <script src="assets/js/theme-toggle.js"></script>
 </body>
