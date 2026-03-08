@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CulinArt — L'art de sublimer la cuisine</title>
+    <script>
+    (function(){
+      var t = localStorage.getItem('culinart-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/culinart-main.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body class="home-page">
+
+  <!-- ══ HEADER ══ -->
+  <header>
+    <div class="logo"><span class="logo-dot"></span>CulinArt</div>
+    <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="active">Accueil</a></li>
+        <li><a href="blog.html">Astuces</a></li>
+        <li><a href="recettes.html">Recettes</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" class="btn">Connexion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ══ HERO — SPLIT LAYOUT ══ -->
+  <section class="home-hero">
+    <!-- Gauche : texte -->
+    <div class="home-hero-text">
+      <span class="home-eyebrow reveal-up" style="--d:0s"> Bienvenue sur CulinArt</span>
+      <h1 class="home-hero-title reveal-up" style="--d:.1s">
+        L'art de<br><em>sublimer</em><br>la cuisine
+      </h1>
+      <p class="home-hero-desc reveal-up" style="--d:.22s">
+        Des recettes élégantes, des saveurs authentiques et des inspirations venues du monde entier. Chaque assiette devient une œuvre.
+      </p>
+      <div class="home-hero-ctas reveal-up" style="--d:.32s">
+        <a href="recettes.html" class="cta-primary">Découvrir les recettes</a>
+        <a href="#histoire" class="cta-ghost">Notre histoire ↓</a>
+      </div>
+      <!-- Stats inline -->
+      <div class="home-hero-stats reveal-up" style="--d:.42s">
+        <div class="hstat"><span class="hstat-n" id="heroRecipesCount">—</span><span class="hstat-l">Recettes</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><span class="hstat-n">5</span><span class="hstat-l">Continents</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><span class="hstat-n">∞</span><span class="hstat-l">Saveurs</span></div>
+      </div>
+    </div>
+
+    <!-- Droite : carousel d'images -->
+    <div class="home-hero-visual reveal-right" style="--d:.15s">
+      <div class="home-carousel">
+        <div class="home-carousel-track">
+          <div class="home-slide" style="background-image:url('images/hero11.png')"></div>
+          <div class="home-slide" style="background-image:url('images/hero22.png')"></div>
+          <div class="home-slide" style="background-image:url('images/hero33.png')"></div>
+          <div class="home-slide" style="background-image:url('images/hero44.png')"></div>
+          <div class="home-slide" style="background-image:url('images/hero55.png')"></div>
+        </div>
+        <!-- Overlay dégradé -->
+        <div class="home-carousel-overlay"></div>
+        <!-- Badge flottant -->
+        <div class="home-badge">
+          <img src="images/logo.png" alt="Logo" class="home-badge-logo">
+          <span>L'art culinaire</span>
+        </div>
+        <!-- Dots -->
+        <div class="home-dots" id="homeDots"></div>
+      </div>
+    </div>
+
+    <!-- Décoration fond -->
+    <div class="home-hero-glow"></div>
+  </section>
+
+  <!-- ══ SECTION HISTOIRE — BENTO LAYOUT ══ -->
+  <section class="home-story" id="histoire">
+    <!-- Tag édito -->
+    <div class="story-header reveal-up" style="--d:0s">
+      <span class="story-tag">Notre histoire</span>
+      <h2 class="story-title">Deux passionnées,<br><em>une même flamme</em></h2>
+    </div>
+
+    <!-- Bento grid 2 colonnes -->
+    <div class="story-bento">
+
+      <!-- Carte photo grande -->
+      <div class="bento-card bento-photo reveal-up" style="--d:.1s">
+        <img src="images/histoire.png" alt="Notre histoire CulinArt">
+        <div class="bento-photo-caption">Imma &amp; Dari — les fondatrices de CulinArt</div>
+      </div>
+
+      <!-- Texte principal -->
+      <div class="bento-card bento-text reveal-up" style="--d:.2s">
+        <span class="bento-label">Le début</span>
+        <p>Avant <strong>CulinArt</strong>, il y avait simplement deux filles&nbsp;: Imma et Dari. Deux personnalités différentes, mais unies par la même curiosité et la même sensibilité. Dès nos premières rencontres, nous avons découvert que quelque chose nous rapprochait profondément&nbsp;: <em>l'amour de la cuisine</em>.</p>
+        <p>Au début, c'était un jeu. Nous testions des recettes simples, parfois maladroites, mais toujours avec le sourire. Chaque essai était une aventure&nbsp;: parfois des ratés, souvent des réussites, mais surtout des souvenirs gravés dans nos cœurs.</p>
+      </div>
+
+      <!-- Citation mise en valeur -->
+      <div class="bento-card bento-quote reveal-up" style="--d:.25s">
+        <span class="bento-quote-mark">"</span>
+        <p>De cette alchimie est né <strong>CulinArt</strong> — un espace où nous partageons plus qu'un savoir-faire. Nous partageons une histoire, un langage d'amour, de créativité et de passion.</p>
+        <span class="bento-quote-sig">— Imma &amp; Dari</span>
+      </div>
+
+      <!-- Suite du texte -->
+      <div class="bento-card bento-text-alt reveal-up" style="--d:.3s">
+        <span class="bento-label">La transformation</span>
+        <p>Avec le temps, cette passion s'est transformée en une véritable histoire d'amour culinaire. Nous avons exploré de nouvelles saveurs, voyagé à travers les plats, revisité les classiques de nos familles, et laissé libre cours à notre imagination.</p>
+        <p>Dans notre cuisine, il n'y avait pas seulement des ingrédients, mais aussi des rires, des confidences et beaucoup de tendresse.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ SECTION PHILOSOPHIE — CHIFFRES + TEXTE ══ -->
+  <section class="home-philosophy reveal-up" style="--d:0s">
+    <div class="philosophy-inner">
+      <div class="philosophy-text">
+        <span class="story-tag">Notre philosophie</span>
+        <h2>Chaque repas,<br><em>une expérience</em></h2>
+        <p>Chez CulinArt, chaque recette raconte une histoire. Nos recettes sont conçues pour vous guider étape par étape, vous apprendre des techniques nouvelles, et surtout vous inviter à expérimenter avec les saveurs, les textures et les couleurs.</p>
+        <p>Laissez-vous emporter par notre univers culinaire où tradition et innovation se rencontrent. Explorez, goûtez, osez, et surtout amusez-vous&nbsp;!</p>
+        <a href="recettes.html" class="cta-primary" style="margin-top:28px;display:inline-flex;">Voir les recettes →</a>
+      </div>
+      <div class="philosophy-cards">
+        <div class="phil-card reveal-up" style="--d:.15s">
+          <span class="phil-icon">🔪</span>
+          <h3>Technique</h3>
+          <p>Des méthodes professionnelles adaptées à tous les niveaux de cuisine.</p>
+        </div>
+        <div class="phil-card reveal-up" style="--d:.25s">
+          <span class="phil-icon">🌍</span>
+          <h3>Authenticité</h3>
+          <p>Des recettes du monde entier, fidèles à leurs traditions d'origine.</p>
+        </div>
+        <div class="phil-card reveal-up" style="--d:.35s">
+          <span class="phil-icon">✨</span>
+          <h3>Créativité</h3>
+          <p>Une touche personnelle sur chaque plat pour transformer l'ordinaire.</p>
+        </div>
+        <div class="phil-card reveal-up" style="--d:.45s">
+          <span class="phil-icon">🤝</span>
+          <h3>Partage</h3>
+          <p>La cuisine comme langage universel, autour d'une table partagée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SECTION AUTEURES — HORIZONTAL SPLIT ══ -->
+  <section class="home-authors">
+    <div class="authors-header reveal-up" style="--d:0s">
+      <span class="story-tag">Les créatrices</span>
+      <h2>Derrière chaque recette,<br><em>deux passionnées</em></h2>
+    </div>
+
+    <div class="authors-split">
+      <!-- Imma -->
+      <div class="author-split-card reveal-up" style="--d:.1s">
+        <div class="author-split-img-wrap">
+          <img src="images/imma .png" alt="Marie-Immaculée">
+          <div class="author-split-img-glow"></div>
+        </div>
+        <div class="author-split-info">
+          <span class="author-split-tag">Co-fondatrice</span>
+          <h3>Marie-Immaculée<br>GNONLONFOUN</h3>
+          <p>Passionnée par la découverte des saveurs du monde, Imma est l'âme créative de CulinArt. Curieuse et toujours prête à innover, elle aime revisiter les recettes classiques avec une touche personnelle qui étonne et séduit.</p>
+          <a href="contact.html" class="author-cta">Contacter Imma →</a>
+        </div>
+      </div>
+
+      <!-- Séparateur -->
+      <div class="authors-divider"></div>
+
+      <!-- Dari -->
+      <div class="author-split-card reveal-up" style="--d:.2s">
+        <div class="author-split-img-wrap">
+          <img src="images/dari.png" alt="Darina">
+          <div class="author-split-img-glow"></div>
+        </div>
+        <div class="author-split-info">
+          <span class="author-split-tag">Co-fondatrice</span>
+          <h3>Darina<br>HOUNHOUI</h3>
+          <p>Enthousiaste et sensible aux traditions culinaires, Dari est la mémoire des plats de famille et la gardienne des saveurs authentiques. Pour elle, cuisiner est une façon de partager, transmettre et tisser des liens.</p>
+          <a href="contact.html" class="author-cta">Contacter Dari →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA FINAL — BANDE ══ -->
+  <section class="home-cta-band reveal-up" style="--d:0s">
+    <div class="cta-band-inner">
+      <div class="cta-band-text">
+        <h2>Prête à cuisiner<br><em>avec nous&nbsp;?</em></h2>
+        <p>Rejoignez notre univers et découvrez des centaines de recettes du monde entier.</p>
+      </div>
+      <div class="cta-band-actions">
+        <a href="recettes.html" class="cta-primary large">Voir les recettes</a>
+        <a href="signup.html" class="cta-outline large">Créer un compte</a>
+      </div>
+    </div>
+    <div class="cta-band-glow"></div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-dot"></span>CulinArt</div>
+        <p>L'art de sublimer la cuisine — recettes élégantes, saveurs authentiques et inspirations venues du monde entier.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="blog.html">Astuces</a></li>
+          <li><a href="recettes.html">Recettes</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Auteures</h4>
+        <ul>
+          <li><a href="contact.html">Marie-Immaculée GNONLONFOUN</a></li>
+          <li><a href="contact.html">Darina HOUNHOUI</a></li>
+          <li><a href="login.html">Mon compte</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> CulinArt — Tous droits réservés.</p>
+      <p class="footer-made">Fait avec passion par Imma &amp; Dari ✦</p>
+    </div>
+  </footer>
+
+  <script src="https://kit.fontawesome.com/4a1ddedfb3.js" crossorigin="anonymous"></script>
+  <script src="assets/js/culinart-main.js"></script>
+  <script src="assets/js/home.js"></script>
+  <script src="assets/js/theme-toggle.js"></script>
+</body>
+</html>

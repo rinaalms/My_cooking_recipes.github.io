@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CulinArt — Astuces</title>
+    <script>
+    (function(){
+      var t = localStorage.getItem('culinart-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/culinart-main.css">
+  <link rel="stylesheet" href="assets/css/blog.css">
+</head>
+<body class="blog-page">
+
+  <header>
+    <div class="logo"><span class="logo-dot"></span>CulinArt</div>
+    <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="blog.html" class="active">Astuces</a></li>
+        <li><a href="recettes.html">Recettes</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" class="btn">Connexion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ══ HERO ASTUCES ══ -->
+  <section class="tips-hero">
+    <div class="tips-hero-bg">
+      <div class="tips-hero-img" style="background-image:url('images/hero.png')"></div>
+      <div class="tips-hero-overlay"></div>
+    </div>
+    <div class="tips-hero-content">
+      <span class="tips-hero-tag">CulinArt — Savoir-faire</span>
+      <h1 class="tips-hero-title">
+        Les <em>Astuces</em><br>de nos chefs
+      </h1>
+      <p class="tips-hero-desc">
+        Chaque secret de cuisine, chaque geste maîtrisé —<br>
+        <span id="heroCount">1000</span> astuces pour sublimer vos plats.
+      </p>
+      <a href="#tips-section" class="tips-hero-scroll">
+        <span>Découvrir</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+    </div>
+    <!-- Chiffres animés -->
+    <div class="tips-hero-stats">
+      <div class="tstat"><span class="tstat-n" id="totalStat">—</span><span class="tstat-l">Astuces</span></div>
+      <div class="tstat-sep"></div>
+      <div class="tstat"><span class="tstat-n">12</span><span class="tstat-l">Catégories</span></div>
+      <div class="tstat-sep"></div>
+      <div class="tstat"><span class="tstat-n">✦</span><span class="tstat-l">Professionnelles</span></div>
+    </div>
+  </section>
+
+  <!-- ══ BARRE DE CONTRÔLE ══ -->
+  <div class="tips-controls" id="tips-section">
+    <div class="tips-controls-inner">
+
+      <!-- Recherche -->
+      <div class="tips-search-box">
+        <svg class="tips-search-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="tipsSearch" placeholder="Rechercher une astuce…" autocomplete="off">
+        <button class="tips-search-clear" id="clearSearch" title="Effacer">✕</button>
+      </div>
+
+      <!-- Filtre catégories -->
+      <div class="tips-filters" id="tipsFilters">
+        <button class="tips-filter-btn active" data-cat="all">Tout</button>
+        <button class="tips-filter-btn" data-cat="couteau">Couteaux</button>
+        <button class="tips-filter-btn" data-cat="cuisson">Cuisson</button>
+        <button class="tips-filter-btn" data-cat="conserv">Conservation</button>
+        <button class="tips-filter-btn" data-cat="assaison">Assaisonnement</button>
+        <button class="tips-filter-btn" data-cat="pâtisser">Pâtisserie</button>
+        <button class="tips-filter-btn" data-cat="viande">Viande</button>
+        <button class="tips-filter-btn" data-cat="légume">Légumes</button>
+      </div>
+
+      <!-- Compteur + toggle vue -->
+      <div class="tips-meta">
+        <span class="tips-count-badge" id="tipsCount">—</span>
+        <div class="tips-view-toggle">
+          <button class="tvt-btn active" id="viewGrid" title="Grille">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </button>
+          <button class="tvt-btn" id="viewList" title="Liste">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ GRILLE ASTUCES ══ -->
+  <main class="tips-main">
+    <div id="tipsGrid" class="tips-grid"></div>
+
+    <!-- Message vide -->
+    <div class="tips-empty" id="tipsEmpty" style="display:none">
+      <span class="tips-empty-icon">🔍</span>
+      <p>Aucune astuce trouvée pour <strong id="emptyQuery"></strong></p>
+      <button onclick="document.getElementById('tipsSearch').value=''; renderTips(tips)">Réinitialiser</button>
+    </div>
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-dot"></span>CulinArt</div>
+        <p>L'art de sublimer la cuisine — recettes élégantes, saveurs authentiques et inspirations venues du monde entier.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="blog.html">Astuces</a></li>
+          <li><a href="recettes.html">Recettes</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Auteures</h4>
+        <ul>
+          <li><a href="contact.html">Marie-Immaculée GNONLONFOUN</a></li>
+          <li><a href="contact.html">Darina HOUNHOUI</a></li>
+          <li><a href="login.html">Mon compte</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> CulinArt — Tous droits réservés.</p>
+      <p class="footer-made">Fait avec passion par Imma &amp; Dari ✦</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/tips_data.js"></script>
+  <script src="assets/js/culinart-main.js"></script>
+  <script>
+  (() => {
+    const grid       = document.getElementById('tipsGrid');
+    const searchEl   = document.getElementById('tipsSearch');
+    const clearBtn   = document.getElementById('clearSearch');
+    const countEl    = document.getElementById('tipsCount');
+    const emptyEl    = document.getElementById('tipsEmpty');
+    const emptyQuery = document.getElementById('emptyQuery');
+    const viewGrid   = document.getElementById('viewGrid');
+    const viewList   = document.getElementById('viewList');
+    const totalStat  = document.getElementById('totalStat');
+    const heroCount  = document.getElementById('heroCount');
+
+    // Icônes par thème
+    const icons = {
+      couteau:'🔪', cuisson:'🔥', conserv:'❄️', assaison:'🧂',
+      pâtisser:'🍰', viande:'🥩', légume:'🥦', œuf:'🥚',
+      pâtes:'🍝', fromage:'🧀', défaut:'✦'
+    };
+
+    function getIcon(text) {
+      const t = text.toLowerCase();
+      for (const [k, v] of Object.entries(icons)) if (t.includes(k)) return v;
+      return icons.défaut;
+    }
+
+    function getNum(tip) {
+      const m = tip.match(/^Astuce (\d+)/);
+      return m ? m[1] : '';
+    }
+    function getText(tip) { return tip.replace(/^Astuce \d+ : /, ''); }
+
+    let currentView = 'grid';
+    let currentFilter = 'all';
+
+    function renderTips(list) {
+      grid.innerHTML = '';
+      const empty = list.length === 0;
+      emptyEl.style.display = empty ? 'block' : 'none';
+      grid.style.display = empty ? 'none' : '';
+
+      if (empty) {
+        emptyQuery.textContent = '"' + searchEl.value + '"';
+        return;
+      }
+
+      countEl.textContent = list.length + ' astuce' + (list.length > 1 ? 's' : '');
+
+      list.forEach((tip, i) => {
+        const num  = getNum(tip);
+        const text = getText(tip);
+        const icon = getIcon(text);
+
+        const card = document.createElement('div');
+        card.className = 'tip-item' + (currentView === 'list' ? ' tip-item--list' : '');
+        card.style.animationDelay = Math.min(i * 0.018, 1.2) + 's';
+        card.innerHTML = `
+          <div class="tip-item-icon">${icon}</div>
+          <div class="tip-item-body">
+            ${num ? `<span class="tip-item-num">№ ${num}</span>` : ''}
+            <p class="tip-item-text">${text}</p>
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+
+    // Init
+    totalStat.textContent = tips.length;
+    heroCount.textContent = tips.length;
+    renderTips(tips);
+
+    // Recherche
+    let debounce;
+    searchEl.addEventListener('input', () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        currentFilter = 'all';
+        document.querySelectorAll('.tips-filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === 'all'));
+        applyFilters();
+        clearBtn.style.opacity = searchEl.value ? '1' : '0';
+      }, 200);
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchEl.value = '';
+      clearBtn.style.opacity = '0';
+      applyFilters();
+    });
+
+    // Filtres
+    document.querySelectorAll('.tips-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tips-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.cat;
+        applyFilters();
+      });
+    });
+
+    function applyFilters() {
+      let list = tips;
+      const q = searchEl.value.toLowerCase().trim();
+      if (q) list = list.filter(t => t.toLowerCase().includes(q));
+      if (currentFilter !== 'all') list = list.filter(t => t.toLowerCase().includes(currentFilter));
+      renderTips(list);
+    }
+
+    // Toggle vue
+    viewGrid.addEventListener('click', () => {
+      currentView = 'grid';
+      grid.classList.remove('tips-grid--list');
+      viewGrid.classList.add('active');
+      viewList.classList.remove('active');
+      applyFilters();
+    });
+    viewList.addEventListener('click', () => {
+      currentView = 'list';
+      grid.classList.add('tips-grid--list');
+      viewList.classList.add('active');
+      viewGrid.classList.remove('active');
+      applyFilters();
+    });
+
+    // Smooth scroll
+    document.querySelector('.tips-hero-scroll')?.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('tips-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+  })();
+  </script>
+  <script src="assets/js/theme-toggle.js"></script>
+</body>
+</html>

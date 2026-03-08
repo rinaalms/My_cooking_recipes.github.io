@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CulinArt — Recettes</title>
+    <script>
+    (function(){
+      var t = localStorage.getItem('culinart-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/culinart-main.css">
+</head>
+<body class="recipes-page">
+
+  <header>
+    <div class="logo"><span class="logo-dot"></span>CulinArt</div>
+    <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="blog.html">Astuces</a></li>
+        <li><a href="recettes.html" class="active">Recettes</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" class="btn">Connexion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="recipes-page-hero">
+    <span class="eyebrow">CulinArt ✦ Collection</span>
+    <h1>Nos <em>Recettes</em></h1>
+    <p class="desc">Des saveurs du monde entier, soigneusement sélectionnées pour éveiller vos sens.</p>
+  </div>
+  <div class="recipes-stats">
+    <div class="stat-item"><span class="stat-num" id="totalCount">—</span><span class="stat-label">Recettes</span></div>
+    <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">Continents</span></div>
+    <div class="stat-item"><span class="stat-num">∞</span><span class="stat-label">Saveurs</span></div>
+  </div>
+  <div class="search-wrap">
+    <div class="search-inner">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchBar" placeholder="Rechercher une recette...">
+    </div>
+  </div>
+  <div class="recipes-divider"><span>Toutes les recettes</span></div>
+  <div id="recipesContainer"></div>
+  <div id="pagination"></div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-dot"></span>CulinArt</div>
+        <p>L'art de sublimer la cuisine — recettes élégantes, saveurs authentiques et inspirations venues du monde entier.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="blog.html">Astuces</a></li>
+          <li><a href="recettes.html">Recettes</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Auteures</h4>
+        <ul>
+          <li><a href="contact.html">Marie-Immaculée GNONLONFOUN</a></li>
+          <li><a href="contact.html">Darina HOUNHOUI</a></li>
+          <li><a href="login.html">Mon compte</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> CulinArt — Tous droits réservés.</p>
+      <p class="footer-made">Fait avec passion par Imma &amp; Dari ✦</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/recettes.js"></script>
+  <script>
+    const container = document.getElementById("recipesContainer");
+    const searchBar = document.getElementById("searchBar");
+    const pagination = document.getElementById("pagination");
+    document.getElementById("totalCount").textContent = recipes.length;
+    let currentPage = 1, recipesPerPage = 12, filteredRecipes = recipes;
+
+    function displayRecipes(list) {
+      container.innerHTML = "";
+      const page = list.slice((currentPage-1)*recipesPerPage, currentPage*recipesPerPage);
+      if (!page.length) { container.innerHTML = `<p style="text-align:center;color:var(--muted2);margin:30px 0;grid-column:1/-1;">Aucune recette trouvée.</p>`; pagination.innerHTML=""; return; }
+      page.forEach(recipe => {
+        const card = document.createElement("div");
+        card.className = "recipe-card";
+        card.innerHTML = `<div class="recipe-card-img-wrap"><img src="${recipe.image}" alt="${recipe.title}" loading="lazy"></div><div class="content"><h3>${recipe.title}</h3><p>${recipe.description}</p><a href="recipe.html?index=${recipes.indexOf(recipe)}" class="view-btn">Voir la recette →</a></div>`;
+        container.appendChild(card);
+      });
+      setupPagination(list);
+    }
+
+    function setupPagination(list) {
+      pagination.innerHTML = "";
+      const pageCount = Math.ceil(list.length / recipesPerPage);
+      if (pageCount <= 1) return;
+      const addBtn = (label, page, isActive) => {
+        const btn = document.createElement("button");
+        btn.textContent = label; if(isActive) btn.classList.add("active");
+        btn.addEventListener("click", () => { currentPage = page; displayRecipes(list); window.scrollTo({top:0,behavior:'smooth'}); });
+        pagination.appendChild(btn);
+      };
+      if(currentPage>1) addBtn("◀",currentPage-1,false);
+      for(let i=1;i<=pageCount;i++) {
+        if(i===1||i===pageCount||Math.abs(i-currentPage)<=1) addBtn(i,i,i===currentPage);
+        else if(Math.abs(i-currentPage)===2) { const d=document.createElement("span"); d.textContent="…"; d.style.cssText="color:var(--muted2);padding:10px 6px;display:inline-flex;align-items:center;"; pagination.appendChild(d); }
+      }
+      if(currentPage<pageCount) addBtn("▶",currentPage+1,false);
+    }
+
+    searchBar.addEventListener("input", () => {
+      const q = searchBar.value.toLowerCase().trim();
+      filteredRecipes = recipes.filter(r => r.title.toLowerCase().includes(q)||r.description.toLowerCase().includes(q));
+      currentPage = 1; displayRecipes(filteredRecipes);
+    });
+
+    displayRecipes(filteredRecipes);
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script src="assets/js/culinart-main.js"></script>
+  <script src="assets/js/theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — CulinArt</title>
+  <script>
+    (function(){var t=localStorage.getItem('culinart-theme');if(!t)t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.setAttribute('data-theme',t);})();
+  </script>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/culinart-main.css">
+  <link rel="stylesheet" href="assets/css/contact.css">
+</head>
+<body class="contact-page">
+
+  <header>
+    <div class="logo"><span class="logo-dot"></span>CulinArt</div>
+    <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="blog.html">Astuces</a></li>
+        <li><a href="recettes.html">Recettes</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="login.html" class="btn">Connexion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="contact-hero">
+    <div class="contact-hero-inner">
+      <span class="contact-tag">Écrivez-nous</span>
+      <h1>Parlons<br><em>cuisine</em></h1>
+      <p>Une idée de recette, une collaboration ou juste un bonjour ?<br>On adore vous lire et vous répondre.</p>
+    </div>
+    <div class="contact-hero-glow"></div>
+  </div>
+
+  <section class="contact-split">
+    <div class="contact-form-side">
+      <h2 class="csplit-title">Envoyez un message</h2>
+      <div class="cform-row">
+        <div class="cform-group">
+          <label for="name">Nom *</label>
+          <input type="text" id="name" placeholder="Votre nom complet" required>
+        </div>
+        <div class="cform-group">
+          <label for="email">E-mail *</label>
+          <input type="email" id="email" placeholder="votre@email.com" required>
+        </div>
+      </div>
+      <div class="cform-group">
+        <label for="subject">Sujet</label>
+        <div class="cform-select-wrap">
+          <select id="subject">
+            <option value="">Choisir un sujet…</option>
+            <option>Proposition de recette</option>
+            <option>Collaboration</option>
+            <option>Question générale</option>
+            <option>Autre</option>
+          </select>
+          <span class="cform-select-arrow">▾</span>
+        </div>
+      </div>
+      <div class="cform-group">
+        <label for="message">Message *</label>
+        <textarea id="message" rows="6" placeholder="Dites-nous tout…" required></textarea>
+      </div>
+      <button class="cform-btn" onclick="sendMessage()">
+        <span>Envoyer le message</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+      <p class="cform-note">* Champs obligatoires. Nous répondons sous 48h.</p>
+    </div>
+
+    <div class="contact-info-side">
+      <h2 class="csplit-title">Retrouvez-nous</h2>
+
+      <div class="cinfo-author-card">
+        <div class="cinfo-author-head">
+          <img src="images/dari.png" alt="Darina Hounhoui">
+          <div>
+            <strong>Darina HOUNHOUI</strong>
+            <span>Créatrice culinaire &amp; rédactrice</span>
+          </div>
+        </div>
+        <div class="cinfo-details">
+          <a href="mailto:darinaalms14@gmail.com" class="cinfo-line">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            darinaalms14@gmail.com
+          </a>
+          <a href="tel:+22961306595" class="cinfo-line">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 5.59 5.59l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +229 61 30 65 95
+          </a>
+          <div class="cinfo-line cinfo-loc">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Cotonou, Bénin
+          </div>
+        </div>
+        <div class="cinfo-socials">
+          <a href="https://www.instagram.com/rinaaaa_alms/" target="_blank" class="csocial-btn"><img src="images/instagram.jpeg" alt="Instagram"></a>
+          <a href="https://www.tiktok.com/@rinaaaa_alms" target="_blank" class="csocial-btn"><img src="images/tiktok.png" alt="TikTok"></a>
+          <a href="https://www.snapchat.com/@d_darina8822" target="_blank" class="csocial-btn"><img src="images/snap.png" alt="Snapchat"></a>
+          <a href="https://www.linkedin.com/in/darina-hounhoui-4a48a2372" target="_blank" class="csocial-btn"><img src="images/linke.png" alt="LinkedIn"></a>
+        </div>
+      </div>
+
+      <div class="cinfo-author-card">
+        <div class="cinfo-author-head">
+          <img src="images/imma .png" alt="Marie-Immaculée Gnonlonfoun">
+          <div>
+            <strong>Marie-Immaculée GNONLONFOUN</strong>
+            <span>Chef &amp; photographe culinaire</span>
+          </div>
+        </div>
+        <div class="cinfo-details">
+          <a href="mailto:imma.gnonlonfoun@gmail.com" class="cinfo-line">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            imma.gnonlonfoun@gmail.com
+          </a>
+          <a href="tel:+33759232634" class="cinfo-line">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 5.59 5.59l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +33 7 59 23 26 34
+          </a>
+          <div class="cinfo-line cinfo-loc">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            66 rue La Fontaine, 94120 Fontnée-sous-bois
+          </div>
+        </div>
+        <div class="cinfo-socials">
+          <a href="https://www.instagram.com/glfmaria/" target="_blank" class="csocial-btn"><img src="images/instagram.jpeg" alt="Instagram"></a>
+          <a href="https://www.tiktok.com/@m_a_r_i_aglf_2" target="_blank" class="csocial-btn"><img src="images/tiktok.png" alt="TikTok"></a>
+          <a href="https://www.snapchat.com/@immaglf" target="_blank" class="csocial-btn"><img src="images/snap.png" alt="Snapchat"></a>
+          <a href="https://www.linkedin.com/@immaglf" target="_blank" class="csocial-btn"><img src="images/linke.png" alt="LinkedIn"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-dot"></span>CulinArt</div>
+        <p>L'art de sublimer la cuisine — recettes élégantes, saveurs authentiques et inspirations venues du monde entier.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="blog.html">Astuces</a></li>
+          <li><a href="recettes.html">Recettes</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Auteures</h4>
+        <ul>
+          <li><a href="contact.html">Marie-Immaculée GNONLONFOUN</a></li>
+          <li><a href="contact.html">Darina HOUNHOUI</a></li>
+          <li><a href="login.html">Mon compte</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> CulinArt — Tous droits réservés.</p>
+      <p class="footer-made">Fait avec passion par Imma &amp; Dari ✦</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/culinart-main.js"></script>
+  <script src="assets/js/theme-toggle.js"></script>
+  <script>
+    function sendMessage() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if (!name || !email || !msg) { alert('Veuillez remplir les champs obligatoires.'); return; }
+      const btn = document.querySelector('.cform-btn');
+      btn.innerHTML = '<span>✓ Message envoyé !</span>';
+      btn.style.background = 'rgba(249,115,22,0.18)';
+      btn.style.borderColor = 'var(--accent)';
+      btn.disabled = true;
+    }
+  </script>
+</body>
+</html>

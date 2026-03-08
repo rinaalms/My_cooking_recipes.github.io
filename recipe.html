@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CulinArt — Recette</title>
+    <script>
+    (function(){
+      var t = localStorage.getItem('culinart-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/culinart-main.css">
+</head>
+<body class="recipes-page">
+
+  <header>
+    <div class="logo"><span class="logo-dot"></span>CulinArt</div>
+    <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="blog.html">Astuces</a></li>
+        <li><a href="recettes.html" class="active">Recettes</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" class="btn">Connexion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="recipeContent" class="recipe-detail"></div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-dot"></span>CulinArt</div>
+        <p>L'art de sublimer la cuisine — recettes élégantes, saveurs authentiques et inspirations venues du monde entier.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="blog.html">Astuces</a></li>
+          <li><a href="recettes.html">Recettes</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> CulinArt — Tous droits réservés.</p>
+      <p class="footer-made">Fait avec passion par Imma &amp; Dari ✦</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/recettes.js"></script>
+  <script>
+    const content = document.getElementById("recipeContent");
+    const index = new URLSearchParams(window.location.search).get("index");
+    if (index !== null && recipes[index]) {
+      const r = recipes[index];
+      content.innerHTML = `<h1>${r.title}</h1><img src="${r.image}" alt="${r.title}"><h2>Ingrédients</h2><ul>${r.ingredients.map(i=>`<li>${i}</li>`).join('')}</ul><h2>Préparation</h2><ol>${r.preparation.map(p=>`<li>${p}</li>`).join('')}</ol><a href="recettes.html" class="view-btn" style="display:inline-block;margin-top:28px;padding:12px 24px;border-radius:10px;text-align:center;">⬅ Retour aux recettes</a>`;
+    } else {
+      content.innerHTML = "<p>Recette non trouvée.</p>";
+    }
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script src="assets/js/culinart-main.js"></script>
+  <script src="assets/js/theme-toggle.js"></script>
+</body>
+</html>

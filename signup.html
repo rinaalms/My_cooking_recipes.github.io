@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription — CulinArt</title>
+    <script>
+    (function(){
+      var t = localStorage.getItem('culinart-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/culinart-main.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body class="auth-split-page">
+
+  <!-- ══ VISUEL GAUCHE ══ -->
+  <div class="auth-visual">
+    <div class="auth-visual-img" style="background-image:url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&q=85&fit=crop')"></div>
+    <div class="auth-visual-overlay"></div>
+    <div class="auth-visual-content">
+      <a href="index.html" class="auth-visual-logo"><span class="logo-dot"></span>CulinArt</a>
+      <div class="auth-visual-quote">
+        <p>"Rejoignez notre communauté de<br>passionnés de cuisine du monde."</p>
+        <span>— Imma &amp; Dari</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FORMULAIRE DROITE ══ -->
+  <div class="auth-form-side">
+    <a href="index.html" class="auth-back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Retour
+    </a>
+
+    <div class="auth-form-inner">
+      <div class="auth-form-header">
+        <h1>Créer un compte</h1>
+        <p>Rejoignez CulinArt et accédez à toutes nos recettes.</p>
+      </div>
+
+      <div class="auth-social-row">
+        <button class="auth-social-btn" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Google
+        </button>
+        <button class="auth-social-btn" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </button>
+      </div>
+
+      <div class="auth-divider"><span>ou par email</span></div>
+
+      <div class="auth-field-row">
+        <div class="auth-field">
+          <label for="signup-fname">Prénom</label>
+          <input type="text" id="signup-fname" placeholder="Prénom">
+        </div>
+        <div class="auth-field">
+          <label for="signup-lname">Nom</label>
+          <input type="text" id="signup-lname" placeholder="Nom de famille">
+        </div>
+      </div>
+
+      <div class="auth-field">
+        <label for="signup-email">Adresse e-mail</label>
+        <input type="email" id="signup-email" placeholder="votre@email.com" autocomplete="email">
+      </div>
+
+      <div class="auth-field">
+        <label for="signup-pwd">Mot de passe</label>
+        <div class="auth-pwd-wrap">
+          <input type="password" id="signup-pwd" placeholder="Au moins 8 caractères" autocomplete="new-password">
+          <button type="button" class="auth-eye" onclick="togglePwd('signup-pwd', this)" tabindex="-1">
+            <svg class="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <!-- Indicateur force -->
+        <div class="pwd-strength" id="pwdStrength">
+          <div class="pwd-bar" id="pwdBar"></div>
+        </div>
+        <span class="pwd-label" id="pwdLabel"></span>
+      </div>
+
+      <div class="auth-field">
+        <label for="signup-confirm">Confirmer le mot de passe</label>
+        <div class="auth-pwd-wrap">
+          <input type="password" id="signup-confirm" placeholder="••••••••" autocomplete="new-password">
+          <button type="button" class="auth-eye" onclick="togglePwd('signup-confirm', this)" tabindex="-1">
+            <svg class="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="auth-remember">
+        <label class="auth-check-label">
+          <input type="checkbox" id="terms">
+          <span class="auth-check-box"></span>
+          J'accepte les <a href="#" style="color:var(--accent-light)">conditions d'utilisation</a>
+        </label>
+      </div>
+
+      <button class="auth-submit-btn" onclick="handleSignup()">
+        Créer mon compte
+      </button>
+
+      <p class="auth-switch">
+        Déjà un compte&nbsp;? <a href="login.html">Se connecter →</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="assets/js/culinart-main.js"></script>
+  <script>
+    function togglePwd(id, btn) {
+      const input = document.getElementById(id);
+      input.type = input.type === 'password' ? 'text' : 'password';
+      btn.style.color = input.type === 'text' ? 'var(--accent-light)' : '';
+    }
+
+    /* Indicateur force mot de passe */
+    document.getElementById('signup-pwd').addEventListener('input', function() {
+      const v = this.value;
+      const bar = document.getElementById('pwdBar');
+      const label = document.getElementById('pwdLabel');
+      let score = 0;
+      if (v.length >= 8) score++;
+      if (/[A-Z]/.test(v)) score++;
+      if (/[0-9]/.test(v)) score++;
+      if (/[^A-Za-z0-9]/.test(v)) score++;
+      const levels = [
+        { w: '0%',   color: 'transparent', text: '' },
+        { w: '25%',  color: '#ef4444',     text: 'Faible' },
+        { w: '50%',  color: '#f97316',     text: 'Moyen' },
+        { w: '75%',  color: '#eab308',     text: 'Bon' },
+        { w: '100%', color: '#22c55e',     text: 'Excellent' },
+      ];
+      const l = levels[Math.min(score, 4)];
+      bar.style.width = l.w;
+      bar.style.background = l.color;
+      label.textContent = l.text;
+      label.style.color = l.color;
+    });
+
+    function handleSignup() {
+      const email = document.getElementById('signup-email').value.trim();
+      const pwd = document.getElementById('signup-pwd').value;
+      const confirm = document.getElementById('signup-confirm').value;
+      const terms = document.getElementById('terms').checked;
+      if (!email || !pwd) { alert('Veuillez remplir tous les champs.'); return; }
+      if (pwd !== confirm) { alert('Les mots de passe ne correspondent pas.'); return; }
+      if (!terms) { alert('Veuillez accepter les conditions d\'utilisation.'); return; }
+      const btn = document.querySelector('.auth-submit-btn');
+      btn.textContent = '✓ Compte créé !';
+      btn.style.background = 'rgba(194,24,91,0.18)';
+      btn.disabled = true;
+    }
+  </script>
+  <script src="assets/js/theme-toggle.js"></script>
+</body>
+</html>
